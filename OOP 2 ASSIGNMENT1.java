@@ -1,12 +1,12 @@
-import java.util.*;
+import java.UniversitySystem;
 
 // Base class representing a general staff member
-abstract class StaffMember {
+abstract class Staff {
     protected String name;
     protected String staffId;
     protected List<Department> departments = new ArrayList<>(); // Association (multiple departments)
 
-    public StaffMember(String name, String staffId) {
+    public Staff(String name, String staffId) {
         this.name = name;
         this.staffId = staffId;
     }
@@ -17,7 +17,7 @@ abstract class StaffMember {
     }
 
     // Abstract method to be overridden by subclasses
-    public abstract String getRoleDetails();
+    public abstract String getroledetails();
 }
 
 // Subclass representing a Lecturer (inherits StaffMember)
@@ -29,9 +29,9 @@ class Lecturer extends StaffMember {
         this.specialization = specialization;
     }
 
-    // Overriding getRoleDetails() to provide lecturer-specific info
+    // Overriding getdetails() to provide lecturer-specific info
     @Override
-    public String getRoleDetails() {
+    public String getdetails() {
         return "Lecturer Name: " + name + ", Specialization: " + specialization;
     }
 }
@@ -45,14 +45,14 @@ class Administrator extends StaffMember {
         this.position = position;
     }
 
-    // Overriding getRoleDetails() to provide administrator-specific info
+    // Overriding getdetails() to provide administrator-specific info
     @Override
-    public String getRoleDetails() {
+    public String getdetails() {
         return "Administrator Name: " + name + ", Position: " + position;
     }
 }
 
-// Office class used in Composition inside Department
+// Class representing an office
 class Office {
     private String roomNumber;
     private String phoneExtension;
@@ -62,27 +62,27 @@ class Office {
         this.phoneExtension = phoneExtension;
     }
 
-    public String getOfficeDetails() {
+    public String getofficeDetails() {
         return "Room: " + roomNumber + ", Phone Ext: " + phoneExtension;
     }
 }
 
-// Department class that has-a Office (Composition)
+// Department class that has a Office (Composition)
 class Department {
     private String deptName;
-    private Office office; // Composition
+    private Office office;    // Composition
 
     public Department(String deptName, Office office) {
         this.deptName = deptName;
         this.office = office;
     }
 
-    public String getDeptName() {
+    public String getdeptName() {
         return deptName;
     }
 
-    public String getOfficeInfo() {
-        return office.getOfficeDetails();
+    public String getofficeinfo() {
+        return office.getofficeDetails();
     }
 }
 
@@ -119,4 +119,6 @@ public class UniversitySystem {
         Office office2 = new Office("C203", "305");
 
         Department csDept = new Department("Computer Science", office1);
-        Department mathDept = new Department("Mathematics", offic
+        Department mathDept = new Department("Mathematics", office2);
+    }
+}
